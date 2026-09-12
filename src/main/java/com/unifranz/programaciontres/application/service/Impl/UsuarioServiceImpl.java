@@ -5,6 +5,7 @@ import com.unifranz.programaciontres.application.service.UsuarioService;
 import com.unifranz.programaciontres.domain.Usuario;
 import com.unifranz.programaciontres.domain.UsuarioAdmin;
 import com.unifranz.programaciontres.infrastructure.persistence.UsuarioRepository;
+import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<UsuarioDto> listarActivos(){
         return usuarioRepository.listarActivos();
+    }
+
+    @Override
+    public void eliminarLogico(Long id){
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
+        usuario.setEliminado(true);
+        usuarioRepository.save(usuario);
     }
 }

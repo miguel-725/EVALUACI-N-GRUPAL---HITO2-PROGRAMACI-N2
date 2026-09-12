@@ -30,5 +30,10 @@ public class UsuarioController {
     public ResponseEntity<List<UsuarioDto>> listarUsuariosActivos(){
         return ResponseEntity.ok(usuarioService.listarActivos());
     }
+    @DeleteMapping("/logico/{id}")
+    public ResponseEntity<Void> eliminarLogico(@PathVariable Long id) {
+        usuarioService.eliminarLogico(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }

@@ -8,4 +8,5 @@ public interface UsuarioService {
     UsuarioDto guardar (UsuarioDto usuarioDto);
     List<UsuarioDto> listar();
     List<UsuarioDto> listarActivos();
+    void eliminarLogico(Long id);
 }
